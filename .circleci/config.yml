@@ -906,7 +906,7 @@ jobs:
 
   test-debian-packaging:
     machine:
-      image: ubuntu-1604:202004-01
+      image: ubuntu-2004:202101-01
     steps:
       - checkout
       - attach_workspace:
@@ -924,7 +924,7 @@ jobs:
 
   test-e2e-webui:
     machine:
-      image: ubuntu-1604:202004-01
+      image: ubuntu-2004:202101-01
     resource_class: large
     steps:
       - checkout
@@ -940,7 +940,7 @@ jobs:
           determined-cli: true
           determined-deploy: true
           extra-requirements-file: "webui/tests/requirements.txt"
-          executor: ubuntu-1604:202004-01
+          executor: ubuntu-2004:202101-01
       - setup-local-cluster:
           det-version: ${CIRCLE_SHA1}
       - run-e2e-webui-tests
@@ -1070,7 +1070,7 @@ jobs:
 
   test-intg-master:
     machine:
-      image: ubuntu-1604:202004-01
+      image: ubuntu-2004:202101-01
     resource_class: large
     steps:
       - checkout
@@ -1081,7 +1081,7 @@ jobs:
 
   test-intg-agent:
     machine:
-      image: ubuntu-1604:202004-01
+      image: ubuntu-2004:202101-01
     resource_class: large
     steps:
       - checkout
@@ -1199,25 +1199,20 @@ jobs:
       parallelism:
         type: integer
     machine:
-      image: ubuntu-1604:202004-01
+      image: ubuntu-2004:202101-01
     resource_class: large
     parallelism: <<parameters.parallelism>>
     steps:
       - checkout
       - attach_workspace:
           at: .
-
-      - run: pyenv uninstall -f 3.6.10
-      - run: sudo apt install -y liblzma-dev lzma
-      - run: PYTHON_BUILD_MIRROR_URL=https://detpyenv.s3.amazonaws.com pyenv install 3.6.10
-      - run: pyenv global 3.6.10
       - setup-python-venv:
           determined-common: true
           determined-cli: true
           determined: true
           determined-deploy: true
           extra-requirements-file: "e2e_tests/tests/requirements.txt"
-          executor: ubuntu-1604:202004-01
+          executor: ubuntu-2004:202101-01
 
       - run:
           name: Start database
@@ -1509,7 +1504,7 @@ jobs:
       det-version:
         type: string
     machine:
-      image: ubuntu-1604:202004-01
+      image: ubuntu-2004:202101-01
     resource_class: large
     parallelism: <<parameters.parallelism>>
     steps:
@@ -1526,7 +1521,7 @@ jobs:
           determined: true
           determined-deploy: true
           extra-requirements-file: "e2e_tests/tests/requirements.txt"
-          executor: ubuntu-1604:202004-01
+          executor: ubuntu-2004:202101-01
 
       - pull-task-images:
           tf1: True
