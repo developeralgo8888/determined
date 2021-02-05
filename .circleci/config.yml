@@ -201,6 +201,7 @@ commands:
           command: |
             sudo apt-get update
             sudo apt-get install -y python3-venv
+            pyenv global 3.8.5
             python3 -m venv /tmp/venv
             echo "export PATH=/tmp/venv/bin:\"${PATH}\"" >> $BASH_ENV
             /tmp/venv/bin/python -m pip install --upgrade pip\<20 wheel setuptools
