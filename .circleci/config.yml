@@ -934,7 +934,7 @@ jobs:
       - run: docker load --input build/agent.image
 
       - install-webui-test-deps
-      - run: pyenv global 3.6.10
+      - run: pyenv global 3.9.1
       - setup-python-venv:
           determined-common: true
           determined-cli: true
@@ -1206,6 +1206,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: .
+      - run: pyenv global 3.9.1
       - setup-python-venv:
           determined-common: true
           determined-cli: true
@@ -1514,7 +1515,7 @@ jobs:
       - run: docker load --input build/master.image
       - run: docker load --input build/agent.image
 
-      - run: pyenv global 3.6.10
+      - run: pyenv global 3.9.1
       - setup-python-venv:
           determined-common: true
           determined-cli: true
